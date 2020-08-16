@@ -9,6 +9,9 @@
 
 import { Prop, Inject, Component, Vue as Vue$1, Watch, Provide } from 'vue-property-decorator';
 import Vue from 'vue';
+import __vue_normalize__ from 'D:devpackagesssue
+ode_modulesollup-plugin-vueuntime
+ormalize.js';
 import { formatDateTime, getCleanURL } from '@vssue/utils';
 import VueI18n from 'vue-i18n';
 
@@ -38,84 +41,6 @@ var script = Vue.extend({
     name: 'Iconfont',
 });
 
-function normalizeComponent(template, style, script, scopeId, isFunctionalTemplate, moduleIdentifier /* server only */, shadowMode, createInjector, createInjectorSSR, createInjectorShadow) {
-    if (typeof shadowMode !== 'boolean') {
-        createInjectorSSR = createInjector;
-        createInjector = shadowMode;
-        shadowMode = false;
-    }
-    // Vue.extend constructor export interop.
-    const options = typeof script === 'function' ? script.options : script;
-    // render functions
-    if (template && template.render) {
-        options.render = template.render;
-        options.staticRenderFns = template.staticRenderFns;
-        options._compiled = true;
-        // functional template
-        if (isFunctionalTemplate) {
-            options.functional = true;
-        }
-    }
-    // scopedId
-    if (scopeId) {
-        options._scopeId = scopeId;
-    }
-    let hook;
-    if (moduleIdentifier) {
-        // server build
-        hook = function (context) {
-            // 2.3 injection
-            context =
-                context || // cached call
-                    (this.$vnode && this.$vnode.ssrContext) || // stateful
-                    (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext); // functional
-            // 2.2 with runInNewContext: true
-            if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-                context = __VUE_SSR_CONTEXT__;
-            }
-            // inject component styles
-            if (style) {
-                style.call(this, createInjectorSSR(context));
-            }
-            // register component module identifier for async chunk inference
-            if (context && context._registeredComponents) {
-                context._registeredComponents.add(moduleIdentifier);
-            }
-        };
-        // used by ssr in case component is cached and beforeCreate
-        // never gets called
-        options._ssrRegister = hook;
-    }
-    else if (style) {
-        hook = shadowMode
-            ? function (context) {
-                style.call(this, createInjectorShadow(context, this.$root.$options.shadowRoot));
-            }
-            : function (context) {
-                style.call(this, createInjector(context));
-            };
-    }
-    if (hook) {
-        if (options.functional) {
-            // register for functional component in vue file
-            const originalRender = options.render;
-            options.render = function renderWithStyleInjection(h, context) {
-                hook.call(context);
-                return originalRender(h, context);
-            };
-        }
-        else {
-            // inject component registration as beforeCreate hook
-            const existing = options.beforeCreate;
-            options.beforeCreate = existing ? [].concat(existing, hook) : [hook];
-        }
-    }
-    return script;
-}
-
-const isOldIE = typeof navigator !== 'undefined' &&
-    /msie [6-9]\\b/.test(navigator.userAgent.toLowerCase());
-
 /* script */
 const __vue_script__ = script;
 
@@ -139,7 +64,7 @@ var __vue_staticRenderFns__ = [];
   
 
   
-  const __vue_component__ = normalizeComponent(
+  const __vue_component__ = __vue_normalize__(
     { render: __vue_render__, staticRenderFns: __vue_staticRenderFns__ },
     __vue_inject_styles__,
     __vue_script__,
@@ -200,7 +125,7 @@ const __vue_script__$1 = script$1;
   
 
   
-  const __vue_component__$1 = normalizeComponent(
+  const __vue_component__$1 = __vue_normalize__(
     {},
     __vue_inject_styles__$1,
     __vue_script__$1,
@@ -262,7 +187,7 @@ const __vue_script__$2 = script$2;
   
 
   
-  const __vue_component__$2 = normalizeComponent(
+  const __vue_component__$2 = __vue_normalize__(
     {},
     __vue_inject_styles__$2,
     __vue_script__$2,
@@ -458,7 +383,7 @@ var __vue_staticRenderFns__$1 = [];
   
 
   
-  const __vue_component__$3 = normalizeComponent(
+  const __vue_component__$3 = __vue_normalize__(
     { render: __vue_render__$1, staticRenderFns: __vue_staticRenderFns__$1 },
     __vue_inject_styles__$3,
     __vue_script__$3,
@@ -550,7 +475,7 @@ var __vue_staticRenderFns__$2 = [];
   
 
   
-  const __vue_component__$4 = normalizeComponent(
+  const __vue_component__$4 = __vue_normalize__(
     { render: __vue_render__$2, staticRenderFns: __vue_staticRenderFns__$2 },
     __vue_inject_styles__$4,
     __vue_script__$4,
@@ -602,7 +527,7 @@ var __vue_staticRenderFns__$3 = [];
   
 
   
-  const __vue_component__$5 = normalizeComponent(
+  const __vue_component__$5 = __vue_normalize__(
     { render: __vue_render__$3, staticRenderFns: __vue_staticRenderFns__$3 },
     __vue_inject_styles__$5,
     __vue_script__$5,
@@ -651,7 +576,7 @@ const __vue_script__$6 = script$6;
   
 
   
-  const __vue_component__$6 = normalizeComponent(
+  const __vue_component__$6 = __vue_normalize__(
     {},
     __vue_inject_styles__$6,
     __vue_script__$6,
@@ -748,7 +673,7 @@ var __vue_staticRenderFns__$4 = [];
   
 
   
-  const __vue_component__$7 = normalizeComponent(
+  const __vue_component__$7 = __vue_normalize__(
     { render: __vue_render__$4, staticRenderFns: __vue_staticRenderFns__$4 },
     __vue_inject_styles__$7,
     __vue_script__$7,
@@ -890,7 +815,7 @@ var __vue_staticRenderFns__$5 = [];
   
 
   
-  const __vue_component__$8 = normalizeComponent(
+  const __vue_component__$8 = __vue_normalize__(
     { render: __vue_render__$5, staticRenderFns: __vue_staticRenderFns__$5 },
     __vue_inject_styles__$8,
     __vue_script__$8,
@@ -977,7 +902,7 @@ var __vue_staticRenderFns__$6 = [];
   
 
   
-  const __vue_component__$9 = normalizeComponent(
+  const __vue_component__$9 = __vue_normalize__(
     { render: __vue_render__$6, staticRenderFns: __vue_staticRenderFns__$6 },
     __vue_inject_styles__$9,
     __vue_script__$9,
@@ -1032,7 +957,7 @@ var __vue_staticRenderFns__$7 = [];
   
 
   
-  const __vue_component__$a = normalizeComponent(
+  const __vue_component__$a = __vue_normalize__(
     { render: __vue_render__$7, staticRenderFns: __vue_staticRenderFns__$7 },
     __vue_inject_styles__$a,
     __vue_script__$a,
@@ -1082,7 +1007,7 @@ var __vue_staticRenderFns__$8 = [];
   
 
   
-  const __vue_component__$b = normalizeComponent(
+  const __vue_component__$b = __vue_normalize__(
     { render: __vue_render__$8, staticRenderFns: __vue_staticRenderFns__$8 },
     __vue_inject_styles__$b,
     __vue_script__$b,
@@ -1183,6 +1108,49 @@ const messages$1 = {
 
 const messages$2 = {
     // auth
+    login: '使用 {platform} 登入',
+    logout: '登出',
+    currentUser: '當前用戶',
+    // comment input
+    loading: '載入中',
+    submit: '提交',
+    submitting: '發表中',
+    submitComment: '發表評論',
+    cancel: '取消',
+    edit: '編輯',
+    editMode: '編輯模式',
+    delete: '刪除',
+    reply: '回覆',
+    // reactions
+    heart: '喜歡',
+    like: '贊',
+    unlike: '踩',
+    // pagination
+    perPage: '每頁評論數',
+    sort: '點擊改變排序方式',
+    page: '頁數',
+    prev: '上一頁',
+    next: '下一頁',
+    // hint
+    comments: '評論 | {count} 條評論 | {count} 條評論',
+    loginToComment: '使用 {platform} 帳號登入後發表評論',
+    placeholder: '留下你的評論丨支持 Markdown 語法丨Ctrl + Enter 發表評論',
+    noLoginPlaceHolder: '登入後才能發表評論丨支持 Markdown 語法',
+    // status
+    failed: '評論加載失敗',
+    initializing: '正在初始化...',
+    issueNotCreated: '點擊創建 Issue',
+    loadingComments: '正在加載評論...',
+    loginRequired: '登入後查看評論',
+    noComments: '還沒有評論，來發表第一條評論吧！',
+    // alerts
+    reactionGiven: `已經點擊過 '{reaction}' 了`,
+    deleteConfirm: '確認要刪除該評論嗎？',
+    deleteFailed: '評論刪除失敗',
+};
+
+const messages$3 = {
+    // auth
     login: 'Entrar com {platform}',
     logout: 'Sair',
     currentUser: 'Usuário Atual',
@@ -1224,7 +1192,7 @@ const messages$2 = {
     deleteFailed: 'Falha ao apagar comentário',
 };
 
-const messages$3 = {
+const messages$4 = {
     // auth
     login: '{platform} でログイン',
     logout: 'ログアウト',
@@ -1267,7 +1235,7 @@ const messages$3 = {
     deleteFailed: 'コメントの削除に失敗しました',
 };
 
-const messages$4 = {
+const messages$5 = {
     // auth
     login: 'התחברו עם {platform}',
     logout: 'התנתקו',
@@ -1321,12 +1289,13 @@ const i18n = new VueI18n({
         'en-US': messages,
         zh: messages$1,
         'zh-CN': messages$1,
-        pt: messages$2,
-        'pt-BR': messages$2,
-        ja: messages$3,
-        'ja-JP': messages$3,
-        he: messages$4,
-        'he-IL': messages$4,
+        'zh-TW': messages$2,
+        pt: messages$3,
+        'pt-BR': messages$3,
+        ja: messages$4,
+        'ja-JP': messages$4,
+        he: messages$5,
+        'he-IL': messages$5,
     },
 });
 
@@ -1870,7 +1839,7 @@ var __vue_staticRenderFns__$9 = [];
   
 
   
-  const __vue_component__$c = normalizeComponent(
+  const __vue_component__$c = __vue_normalize__(
     { render: __vue_render__$9, staticRenderFns: __vue_staticRenderFns__$9 },
     __vue_inject_styles__$c,
     __vue_script__$c,
